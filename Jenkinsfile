@@ -1,20 +1,20 @@
 pipeline {
+  
   agent any
+  
   stages {
     stage("Build") {
       steps {
-        withMaven(maven: 'prac4maven') {
-          sh "mvn clean install -f pom.xml"
-        }
+        sh "mvn clean install"
       }
     }
     
     stage("Test") {
       steps {
-        withMaven(maven: 'prac4maven') {
-          sh "mvn test -f pom.xml"
-        }
+        sh "mvn test"
       }
     }
+    
   }
+  
 }
