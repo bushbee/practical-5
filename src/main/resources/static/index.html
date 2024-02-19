@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Count to N</title>
+</head>
+
+<body>
+    N: <input type="text" id="number-input" />
+
+    <button onclick="sendRequest()">Count to N</button>
+
+	<p id="response-paragraph"></p>
+
+    <script>
+        const sendRequest = async () => {
+			const responseParagraph = document.getElementById("response-paragraph");
+            
+            const number = document.getElementById("number-input").value;
+
+            const response = await fetch(`/api/count?number=${number}`, {
+                method: 'GET',
+                headers: {
+                    'Content-Type': 'application/x-www-form-urlencoded'
+                }
+            });
+
+			const responseData = await response.text();
+			responseParagraph.innerText = responseData;
+		}
+    </script>
+</body>
+
+</html>
