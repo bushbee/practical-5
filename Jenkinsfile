@@ -7,7 +7,8 @@ pipeline {
           sh "mvn clean install -f pom.xml"
         }
       }
-    },
+    }
+    
     stage("Test") {
       steps {
         withMaven(maven: 'prac4maven') {
