@@ -3,9 +3,16 @@ pipeline {
   stages {
     stage("Build") {
       steps {
-        withMaven(globalMavenSettingsConfig: '', jdk: '', maven: 'prac4maven', mavenSettingsConfig: '', traceability: true) {
-          sh "mvn clean install"
-        } // withMaven will discover the generated Maven artifacts, JUnit Surefire & FailSafe reports and FindBugs reports
+        withMaven(maven: 'prac4maven') {
+          sh "mvn clean install -f pom.xml"
+        }
+      }
+    },
+    stage("Test") {
+      steps {
+        withMaven(maven: 'prac4maven') {
+          sh "mvn test -f pom.xml"
+        }
       }
     }
   }
